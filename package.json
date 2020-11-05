@@ -1,0 +1,48 @@
+{
+  "name": "github-list-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "parcel src/index.html",
+    "build-prod": "parcel build src/index.html",
+    "test": "jest",
+    "count-commits": "git log --graph --decorate --pretty=oneline --abbrev-commit"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@svgr/parcel-plugin-svgr": "^5.4.0",
+    "axios": "^0.20.0",
+    "connected-react-router": "^6.8.0",
+    "fontsource-roboto": "^3.0.3",
+    "immer": "^7.0.14",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "7.2.1",
+    "react-router-dom": "5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "2.3.0",
+    "rxjs": "6.6.3",
+    "styled-components": "5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "babel-jest": "^26.6.1",
+    "@types/react-redux": "^7.1.11",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@types/styled-components": "^5.1.4",
+    "jest": "^26.6.1",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^4.0.5"
+  }
+}
