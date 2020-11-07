@@ -1,3 +1,1 @@
-export * from "./country.type";
-export * from "./countryList.type";
-export * from "./fullCountryAttributes.type";
+export * from "./github.user.events.public.type";
