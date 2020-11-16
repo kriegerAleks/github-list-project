@@ -35,6 +35,8 @@ Open the file `dist/index.html` in your browser
 
 To run unit tests:
 
+Note that currently there arent any unit tests to run
+
 ```sh
 npm test
 ```
