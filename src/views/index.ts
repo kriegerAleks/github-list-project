@@ -1,2 +1,1 @@
-export * from "./CountryDetailsView";
-export * from "./CountryListView";
+export * from "./UserActivityView";

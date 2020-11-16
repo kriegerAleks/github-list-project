@@ -1,7 +1,8 @@
+import { mockData } from "./../../../types/github.user.events.public";
+
 import { Dispatch } from "redux";
 import { githubUserEventPublic } from "../../../types";
 import { githubUserList } from "../../../endpoints";
-
 export enum userActivityActionTypes {
   SEARCH_STARTED = "[userActivity]SEARCH_STARTED",
   SEARCH_RESOLVE = "[userActivity]SEARCH_RESOLVE",
@@ -42,6 +43,11 @@ const removeItemFromViewLater = ({ itemId }: { itemId: string }) => ({
 function searchForPublicUserActivity({ userName }: { userName: string }) {
   return (dispatch: Dispatch) => {
     dispatch(searchStarted({ userName }));
+    // return dispatch(
+    //   searchResolved({
+    //     itemList: <Array<githubUserEventPublic>>(<unknown>mockData.data),
+    //   })
+    // );
     return githubUserList
       .getUserEvents(userName)
       .then((result) => {
