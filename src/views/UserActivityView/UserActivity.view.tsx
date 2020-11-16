@@ -12,7 +12,7 @@ import {
   Button,
   Avatar,
   FormControlLabel,
-  Switch,
+  Switch as S,
 } from "@material-ui/core";
 
 import { useDispatch } from "react-redux";
@@ -23,9 +23,19 @@ import { useUserActivity } from "../../store/ducks/userActivityList";
 import actions from "../../store/actions";
 import { githubUserEventPublic } from "../../types";
 
+const Switch = styled(S)`
+  margin: ${(props) => props.theme.spacing(1)}px;
+`;
+
 const SectionWrapper = styled(Paper)`
   margin: ${(props) => props.theme.spacing(1)}px;
   padding: ${(props) => props.theme.spacing(1)}px;
+`;
+
+const SectionToggleWrapper = styled(SectionWrapper)`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 const ResultList = styled(SectionWrapper)`
@@ -48,9 +58,9 @@ function UserActivityView() {
   useEffect(() => {
     const textSubscription = textSub
       .pipe(
+        // filter((x) => !!x),
         debounceTime(70),
-        distinct(),
-        filter((x) => !!x)
+        distinct()
       )
       .subscribe((userName) => {
         searchForUserActivity(userName);
@@ -94,7 +104,7 @@ function UserActivityView() {
         </SectionWrapper>
       }
     >
-      <SectionWrapper>
+      <SectionToggleWrapper>
         <Typography variant="h5">
           Toggle between saved and retrieved results
         </Typography>
@@ -110,10 +120,10 @@ function UserActivityView() {
           label={pageTitle}
           labelPlacement={viewLaterToggleLabelPlacement}
         />
-      </SectionWrapper>
+      </SectionToggleWrapper>
       {currentListIsPopulated && (
         <ResultList>
-          {activityList.map((activityItem) => {
+          {currentList.map((activityItem) => {
             const {
               type,
               actor: { avatar_url, display_login },

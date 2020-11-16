@@ -43,11 +43,11 @@ const removeItemFromViewLater = ({ itemId }: { itemId: string }) => ({
 function searchForPublicUserActivity({ userName }: { userName: string }) {
   return (dispatch: Dispatch) => {
     dispatch(searchStarted({ userName }));
-    // return dispatch(
-    //   searchResolved({
-    //     itemList: <Array<githubUserEventPublic>>(<unknown>mockData.data),
-    //   })
-    // );
+    return dispatch(
+      searchResolved({
+        itemList: <Array<githubUserEventPublic>>(<unknown>mockData.data),
+      })
+    );
     return githubUserList
       .getUserEvents(userName)
       .then((result) => {
