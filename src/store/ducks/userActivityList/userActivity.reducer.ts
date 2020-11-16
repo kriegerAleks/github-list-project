@@ -23,9 +23,14 @@ const reducer = produce((draftState: userActivity, action) => {
   switch (action.type) {
     case userActivityActionTypes.ADD_ITEM_TO_VIEW_LATER: {
       const { item } = action;
-      const viewLater = [...draftState.viewLater, item];
 
-      draftState.viewLater = viewLater;
+      if (
+        draftState.viewLater.find((entry) => entry.id == item.id) == undefined
+      ) {
+        const viewLater = [...draftState.viewLater, item];
+
+        draftState.viewLater = viewLater;
+      }
 
       break;
     }
