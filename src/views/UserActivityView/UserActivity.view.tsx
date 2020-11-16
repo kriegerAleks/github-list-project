@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BehaviorSubject } from "rxjs";
 import { debounceTime, distinct, filter } from "rxjs/operators";
+import { useDispatch } from "react-redux";
+
 import {
-  Paper,
   Typography,
   TextField,
   Card,
@@ -12,37 +13,20 @@ import {
   Button,
   Avatar,
   FormControlLabel,
-  Switch as S,
 } from "@material-ui/core";
 
-import { useDispatch } from "react-redux";
-
-import styled from "styled-components";
 import { DesktopLayout } from "../../layout";
 import { useUserActivity } from "../../store/ducks/userActivityList";
 import actions from "../../store/actions";
 import { githubUserEventPublic } from "../../types";
 
-const Switch = styled(S)`
-  margin: ${(props) => props.theme.spacing(1)}px;
-`;
-
-const SectionWrapper = styled(Paper)`
-  margin: ${(props) => props.theme.spacing(1)}px;
-  padding: ${(props) => props.theme.spacing(1)}px;
-`;
-
-const SectionToggleWrapper = styled(SectionWrapper)`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const ResultList = styled(SectionWrapper)`
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-gap: ${(props) => props.theme.spacing(1)}px;
-`;
+import {
+  SectionToggleWrapper,
+  SectionWrapper,
+  Switch,
+  ResultList,
+} from "./UserActivity.view.styles";
+import { GithubUserEventCard } from "../../components";
 
 function UserActivityView() {
   const dispatch = useDispatch();
@@ -124,38 +108,13 @@ function UserActivityView() {
       {currentListIsPopulated && (
         <ResultList>
           {currentList.map((activityItem) => {
-            const {
-              type,
-              actor: { avatar_url, display_login },
-              id,
-              repo: { name, url },
-            } = activityItem;
             return (
-              <Card variant="outlined">
-                <CardHeader
-                  avatar={<Avatar src={avatar_url} />}
-                  title={<Typography>User: {display_login}</Typography>}
-                  subheader={
-                    <Typography
-                      color="textSecondary"
-                      gutterBottom
-                      variant="subtitle2"
-                    >
-                      Type:{type}
-                    </Typography>
-                  }
-                />
-                <CardContent>
-                  <Typography>Event Id:{id}</Typography>
-                  <Typography>Repo Name:{name}</Typography>
-                  <Typography>Repo URL:{url}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button onClick={() => cardAction(activityItem)}>
-                    {cardActionLabel}
-                  </Button>
-                </CardActions>
-              </Card>
+              <GithubUserEventCard
+                userEvent={activityItem}
+                cardAction={cardAction}
+                cardActionLabel={cardActionLabel}
+                key={activityItem.id}
+              />
             );
           })}
         </ResultList>
