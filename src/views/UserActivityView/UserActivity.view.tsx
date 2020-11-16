@@ -3,17 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { debounceTime, distinct, filter } from "rxjs/operators";
 import { useDispatch } from "react-redux";
 
-import {
-  Typography,
-  TextField,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Button,
-  Avatar,
-  FormControlLabel,
-} from "@material-ui/core";
+import { Typography, TextField, FormControlLabel } from "@material-ui/core";
 
 import { DesktopLayout } from "../../layout";
 import { useUserActivity } from "../../store/ducks/userActivityList";
@@ -42,7 +32,7 @@ function UserActivityView() {
   useEffect(() => {
     const textSubscription = textSub
       .pipe(
-        // filter((x) => !!x),
+        filter((x) => !!x),
         debounceTime(70),
         distinct()
       )
