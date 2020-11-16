@@ -34,17 +34,31 @@ function GithubUserEventCard({
     <Card variant="outlined">
       <CardHeader
         avatar={<Avatar src={avatar_url} />}
-        title={<Typography>User: {display_login}</Typography>}
+        title={
+          <Typography>
+            <strong>User:</strong> {display_login}
+          </Typography>
+        }
         subheader={
           <Typography color="textSecondary" gutterBottom variant="subtitle2">
-            Type:{type}
+            <strong>Type: </strong>
+            {type}
           </Typography>
         }
       />
       <CardContent>
-        <Typography>Event Id:{id}</Typography>
-        <Typography>Repo Name:{name}</Typography>
-        <Typography>Repo URL:{url}</Typography>
+        <Typography>
+          <strong>Event Id:</strong>
+          {id}
+        </Typography>
+        <Typography>
+          <strong>Repo Name:</strong>
+          {name}
+        </Typography>
+        <Typography>
+          <strong>Repo URL:</strong>
+          {url}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button onClick={() => cardAction(userEvent)}>{cardActionLabel}</Button>
