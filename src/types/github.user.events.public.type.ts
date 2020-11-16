@@ -15,7 +15,7 @@ interface githubUserEventOrganisation {
   avatar_url: stringUrl;
 }
 
-interface githubUserEventPublic {
+export interface githubUserEventPublic {
   id: string;
   type: githubUserEventTypes;
   actor: githubEventsActor;
@@ -99,6 +99,6 @@ export interface githubUserCreateEventPublic extends githubUserEventPublic {
 // TODO:
 export interface githubUserPullRequestEvent extends githubUserEventPublic {}
 
-type gitHubUserEventTypes =
+export type gitHubUserEventTypes =
   | githubUserCreateEventPublic
   | githubUserPushEventPublic;
